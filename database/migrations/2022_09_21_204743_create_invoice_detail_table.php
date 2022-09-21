@@ -11,18 +11,19 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('invoices', function (Blueprint $table) {
+        Schema::create('invoice_detail', function (Blueprint $table) {
             $table->id();
-            $table->integer('number');
-            $table->string('status');
-            $table->decimal('amount');
-            $table->timestamp('posted_at');
-            $table->foreignId('client_id')
+            $table->foreignId('invoice_id')
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->foreignId('product_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('null');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }
@@ -32,8 +33,8 @@ return new class extends Migration
      *
      * @return void
      */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('invoices');
+        Schema::dropIfExists('invoice_detail');
     }
 };
