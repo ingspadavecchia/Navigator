@@ -26,6 +26,14 @@ Run the database migrations (**Set the database connection in .env before migrat
 
 You can now access the server at http://localhost
 
+## Local development
+
+There is a `Makefile` file that provide us a single entry point for all day-to-day development tasks, just type `make` on the root of the project to get the list of tasks'
+
+Prerequisites:
+* [Docker Compose](https://docs.docker.com/compose/install/)
+* Make command | [Make for Windows](https://stackoverflow.com/a/54086635)
+
 ## Database seeding
 
 **Populate the database with seed data with relationships.**
