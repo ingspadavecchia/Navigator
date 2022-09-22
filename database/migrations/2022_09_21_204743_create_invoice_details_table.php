@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('invoice_detail', function (Blueprint $table) {
+        Schema::create('invoice_details', function (Blueprint $table) {
             $table->id();
             $table->foreignId('invoice_id')
                 ->constrained()
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->foreignId('product_id')
                 ->constrained()
                 ->onUpdate('cascade')
-                ->onDelete('null');
+                ->onDelete('cascade');
             $table->integer('quantity');
             $table->timestamps();
         });

@@ -9,5 +9,18 @@ class Client extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'email', 'address'];
+    public const COL_NAME = 'name';
+    public const COL_EMAIL = 'email';
+    public const COL_ADDRESS = 'address';
+
+    protected $fillable = [self::COL_NAME, self::COL_EMAIL, self::COL_ADDRESS];
+
+    /**
+     * Get the invoices for the Client.
+     */
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class);
+    }
+
 }

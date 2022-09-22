@@ -15,14 +15,14 @@ return new class extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->integer('number');
-            $table->string('status');
-            $table->decimal('amount');
-            $table->timestamp('posted_at');
             $table->foreignId('client_id')
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->integer('number');
+            $table->string('status');
+            $table->decimal('amount')->nullable();
+            $table->timestamp('posted_at')->nullable();
             $table->timestamps();
         });
     }
