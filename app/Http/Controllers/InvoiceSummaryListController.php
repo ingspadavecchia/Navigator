@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\InvoiceSummaryListRequest;
 use App\Services\InvoiceSummaryServiceInterface;
 
-class InvoiceSummaryList extends Controller
+class InvoiceSummaryListController extends Controller
 {
 
     private InvoiceSummaryServiceInterface $invoiceSummaryService;
