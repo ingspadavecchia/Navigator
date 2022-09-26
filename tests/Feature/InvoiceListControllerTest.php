@@ -7,23 +7,23 @@ use App\Models\Invoice;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
-class InvoiceSummaryListTest extends TestCase
+class InvoiceListControllerTest extends TestCase
 {
     public const EXPECTED_AMOUNT_OF_INVOICES = 80;
     public const EXPECTED_AMOUNT_OF_FILTERED_INVOICES = 8;
 
-    public function test_the_invoice_summary_list_returns_a_successful_response(): void
+    public function test_the_invoice_list_returns_a_successful_response(): void
     {
-        $response = $this->getJson('/api/invoice_summary');
+        $response = $this->getJson('/api/invoices');
 
         $response->assertOk();
 
         $response->assertJsonCount(self::EXPECTED_AMOUNT_OF_INVOICES);
     }
 
-    public function test_the_invoice_summary_list_has_specific_columns(): void
+    public function test_the_invoice_list_has_specific_columns(): void
     {
-        $response = $this->getJson('/api/invoice_summary');
+        $response = $this->getJson('/api/invoices');
 
         $response->assertJson(fn(AssertableJson $json) => $json->each(
             fn($json) => $json->hasAll(
@@ -33,9 +33,9 @@ class InvoiceSummaryListTest extends TestCase
         );
     }
 
-    public function test_the_invoice_summary_filter_by_non_exising_client(): void
+    public function test_the_invoice_filter_by_non_exising_client(): void
     {
-        $response = $this->getJson('/api/invoice_summary?client_ids[]=10000');
+        $response = $this->getJson('/api/invoices?client_ids[]=10000');
 
         $this->assertEquals(422, $response->getStatusCode());
 
@@ -51,9 +51,9 @@ class InvoiceSummaryListTest extends TestCase
         ]);
     }
 
-    public function test_the_invoice_summary_filter_by_two_clients(): void
+    public function test_the_invoice_filter_by_two_clients(): void
     {
-        $response = $this->getJson('/api/invoice_summary?client_ids[]=1&client_ids[]=2');
+        $response = $this->getJson('/api/invoices?client_ids[]=1&client_ids[]=2');
 
         $response->assertOk();
 
@@ -67,7 +67,7 @@ class InvoiceSummaryListTest extends TestCase
         );
     }
 
-    public function test_the_invoice_summary_filter_by_one_client_must_has_the_correct_invoice_amount_value(): void
+    public function test_the_invoice_filter_by_one_client_must_has_the_correct_invoice_amount_value(): void
     {
         $clientId = 1;
         $expectedResponse = [];
@@ -88,7 +88,7 @@ class InvoiceSummaryListTest extends TestCase
         }
 
         // make the request
-        $response = $this->getJson('/api/invoice_summary?client_ids[]=' . $clientId);
+        $response = $this->getJson('/api/invoices?client_ids[]=' . $clientId);
 
         $responseAsArray = json_decode($response->getContent(), true, 512, JSON_THROW_ON_ERROR);
 

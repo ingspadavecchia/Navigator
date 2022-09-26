@@ -6,7 +6,7 @@ namespace Tests\Feature;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
-class ClientListTest extends TestCase
+class ClientListControllerTest extends TestCase
 {
     public const EXPECTED_AMOUNT_OF_CLIENTS = 20;
 

@@ -5,7 +5,7 @@ namespace App\Services;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
-class InvoiceSummaryService implements InvoiceSummaryServiceInterface
+class InvoiceService implements InvoiceServiceInterface
 {
 
     public function getInvoiceSummaryByClientIds(array $clientIds = null): Collection
