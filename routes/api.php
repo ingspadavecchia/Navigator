@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Controllers\ClientListController;
-use App\Http\Controllers\InvoiceSummaryListController;
+use App\Http\Controllers\InvoiceListController;
+use App\Http\Controllers\InvoiceDetailListController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,4 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/clients', ClientListController::class);
-Route::get('/invoice_summary', InvoiceSummaryListController::class);
+Route::get('/invoices', InvoiceListController::class);
+Route::get('/invoices/{invoice}/invoice_details', InvoiceDetailListController::class);
