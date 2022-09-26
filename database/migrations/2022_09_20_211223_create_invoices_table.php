@@ -21,7 +21,6 @@ return new class extends Migration
                 ->onDelete('cascade');
             $table->integer('number');
             $table->string('status');
-            $table->decimal('amount')->nullable();
             $table->timestamp('posted_at')->nullable();
             $table->timestamps();
         });

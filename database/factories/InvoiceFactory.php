@@ -20,7 +20,6 @@ class InvoiceFactory extends Factory
         return [
             Invoice::COL_NUMBER => random_int(1,300),
             Invoice::COL_STATUS => Invoice::STATUS_DRAFT,
-            Invoice::COL_AMOUNT => null,
             Invoice::COL_POSTED_AT => null,
         ];
     }
