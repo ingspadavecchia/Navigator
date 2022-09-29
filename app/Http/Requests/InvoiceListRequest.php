@@ -24,6 +24,7 @@ class InvoiceListRequest extends FormRequest
     public function rules()
     {
         return [
+            'client_ids' => 'nullable|array',
             'client_ids.*' => 'nullable|exists:clients,id',
         ];
     }
