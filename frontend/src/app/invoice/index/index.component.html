@@ -4,26 +4,39 @@
     <h4>List Invoices</h4>
   </div>
 
-  <br>
+<!--  <form>-->
+<!--      <div class="form-row">-->
+<!--        <div class="form-col">-->
+<!--          <select class="custom-select" multiple *ngFor="let client of clients" >-->
+<!--            <option value="client_ids[]=">{{ client.name }}</option>-->
+<!--          </select>-->
+<!--        </div>-->
+<!--        <div class="form-col">-->
+<!--          <button type="submit" class="btn btn-primary" (click)="filterByClientIds" >Go</button>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--  </form>-->
 
-  <button type="button" (click)="getInvoicesByClientId(invoice.id)" class="btn btn-danger">Go</button>
-
-  <table class="table ">
+  <table class="table table-hover">
+    <thead>
     <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Phone</th>
-      <th width="220px">Action</th>
+      <th scope="col">Invoice ID</th>
+      <th scope="col">Invoice Number</th>
+      <th scope="col">Client Name</th>
+      <th scope="col">Invoice Amount</th>
+      <th scope="col">Posted at</th>
+      <th scope="col">Status</th>
     </tr>
-    <tr *ngFor="let invoice of invoices">
-      <td>{{ invoice.id }}</td>
-      <td>{{ invoice.name }}</td>
-      <td>{{ invoice.email }}</td>
-      <td>{{ invoice.phone }}</td>
-      <td>
-        <a href="#" [routerLink]="['/invoice/', 'edit', invoice.id  ]" class="btn btn-primary">Edit</a>
-      </td>
+    </thead>
+    <tbody>
+    <tr  *ngFor="let invoice of invoices">
+      <td>{{ invoice.invoice_id }}</td>
+      <td>{{ invoice.invoice_number }}</td>
+      <td>{{ invoice.client_name }}</td>
+      <td>{{ invoice.invoice_amount }}</td>
+      <td>{{ invoice.invoice_posted_at }}</td>
+      <td>{{ invoice.invoice_status }}</td>
     </tr>
+    </tbody>
   </table>
 </section>
