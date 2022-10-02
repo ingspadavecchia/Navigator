@@ -4,18 +4,18 @@
     <h4>List Invoices</h4>
   </div>
 
-<!--  <form>-->
-<!--      <div class="form-row">-->
-<!--        <div class="form-col">-->
-<!--          <select class="custom-select" multiple *ngFor="let client of clients" >-->
-<!--            <option value="client_ids[]=">{{ client.name }}</option>-->
-<!--          </select>-->
-<!--        </div>-->
-<!--        <div class="form-col">-->
-<!--          <button type="submit" class="btn btn-primary" (click)="filterByClientIds" >Go</button>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--  </form>-->
+  <form>
+      <div class="form-row">
+        <div class="form-col">
+          <select class="custom-select" multiple >
+            <option *ngFor="let client of clients" value="client_ids[]={{ client.id }}" >{{ client.name }}</option>
+          </select>
+        </div>
+        <div class="form-col">
+          <button type="submit" class="btn btn-primary" >Go</button>
+        </div>
+      </div>
+  </form>
 
   <table class="table table-hover">
     <thead>
