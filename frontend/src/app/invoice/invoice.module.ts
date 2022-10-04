@@ -1,9 +1,8 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-import { InvoiceRoutingModule } from './invoice-routing.module';
-import { IndexComponent } from './index/index.component';
-
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {InvoiceRoutingModule} from './invoice-routing.module';
+import {IndexComponent} from './index/index.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -11,7 +10,9 @@ import { IndexComponent } from './index/index.component';
   ],
   imports: [
     CommonModule,
-    InvoiceRoutingModule
+    InvoiceRoutingModule,
+    ReactiveFormsModule
   ]
 })
-export class InvoiceModule { }
+export class InvoiceModule {
+}

@@ -24,6 +24,11 @@ Run the database migrations (**Set the database connection in .env before migrat
 
     ./vendor/bin/sail php artisan migrate
 
+Start the Angular application
+
+    cd frontend
+    ng serve --open
+
 You can now access the server at http://localhost
 
 ## Local development

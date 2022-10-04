@@ -1,21 +1,22 @@
 <section>
 
-  <div class="d-flex justify-content-between">
-    <h4>List Invoices</h4>
+  <div class="">
+    <h1>List Invoices</h1>
   </div>
 
-  <form>
-      <div class="form-row">
-        <div class="form-col">
-          <select class="custom-select" multiple >
-            <option *ngFor="let client of clients" value="client_ids[]={{ client.id }}" >{{ client.name }}</option>
-          </select>
-        </div>
-        <div class="form-col">
-          <button type="submit" class="btn btn-primary" >Go</button>
-        </div>
-      </div>
-  </form>
+  <!--  <form [formGroup]="filterInvoicesByClientsForm" (ngSubmit)="submit()">-->
+  <!--    <div class="form-row">-->
+  <!--      <div class="form-col">-->
+  <!--        <select multiple name="clients" [formControlName]="clientsControl">-->
+  <!--          <option [ngValue]="null" disabled>Select Clients</option>-->
+  <!--          <option *ngFor="let client of clients" [ngValue]="client">{{client.name}}</option>-->
+  <!--        </select>-->
+  <!--      </div>-->
+  <!--      <div class="form-col">-->
+  <!--        <button type="submit">Go</button>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  </form>-->
 
   <table class="table table-hover">
     <thead>
@@ -29,7 +30,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr  *ngFor="let invoice of invoices">
+    <tr *ngFor="let invoice of invoices" [routerLink]="['/invoice/' + invoice.invoice_id + '/invoice_detail']" >
       <td>{{ invoice.invoice_id }}</td>
       <td>{{ invoice.invoice_number }}</td>
       <td>{{ invoice.client_name }}</td>
