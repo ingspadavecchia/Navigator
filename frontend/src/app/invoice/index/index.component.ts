@@ -50,9 +50,8 @@ export class IndexComponent implements OnInit {
   }
 
   private getInvoicesByClients(clients: Client[]) {
-    this.clientService.getInvoicesByClients(clients).subscribe((data: Client[]) => {
-      console.log(data);
-      this.clients = data;
+    this.invoiceService.getInvoicesByClients(clients).subscribe((data: Invoice[]) => {
+      this.invoices = data;
     })
   }
 

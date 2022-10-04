@@ -17,19 +17,4 @@ export class ClientService {
   getAll(): Observable<Client[]> {
     return this.httpClient.get<Client[]>(this.apiURL + '/api/clients');
   }
-
-  getInvoicesByClients(clients: Client[]): Observable<Client[]> {
-
-    let queryParams = '?';
-    clients.forEach((client, index) => {
-      if (index !== 0) {
-        queryParams += '&';
-      }
-      queryParams += 'client_ids[]=' + client.id;
-    });
-
-    console.log(queryParams);
-
-    return this.httpClient.get<Client[]>(this.apiURL + '/api/clients' + queryParams);
-  }
 }
