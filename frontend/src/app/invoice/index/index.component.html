@@ -4,19 +4,15 @@
     <h1>List Invoices</h1>
   </div>
 
-  <!--  <form [formGroup]="filterInvoicesByClientsForm" (ngSubmit)="submit()">-->
-  <!--    <div class="form-row">-->
-  <!--      <div class="form-col">-->
-  <!--        <select multiple name="clients" [formControlName]="clientsControl">-->
-  <!--          <option [ngValue]="null" disabled>Select Clients</option>-->
-  <!--          <option *ngFor="let client of clients" [ngValue]="client">{{client.name}}</option>-->
-  <!--        </select>-->
-  <!--      </div>-->
-  <!--      <div class="form-col">-->
-  <!--        <button type="submit">Go</button>-->
-  <!--      </div>-->
-  <!--    </div>-->
-  <!--  </form>-->
+  <form [formGroup]="clientsSelectorFormGroup" (ngSubmit)="submit()">
+    <div class="form-group">
+      <select multiple formControlName="clientSelectedFormControl" class="form-control">
+        <option [ngValue]="" disabled>Select Clients</option>
+        <option *ngFor="let client of clients" [ngValue]="client">{{client.name}}</option>
+      </select>
+      <button type="submit">Go</button>
+    </div>
+  </form>
 
   <table class="table table-hover">
     <thead>
@@ -30,7 +26,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let invoice of invoices" [routerLink]="['/invoice/' + invoice.invoice_id + '/invoice_detail']" >
+    <tr *ngFor="let invoice of invoices" [routerLink]="['/invoice/' + invoice.invoice_id + '/invoice_detail']">
       <td>{{ invoice.invoice_id }}</td>
       <td>{{ invoice.invoice_number }}</td>
       <td>{{ invoice.client_name }}</td>

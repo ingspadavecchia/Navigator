@@ -3,7 +3,7 @@ import {Invoice} from "../invoice";
 import {InvoiceService} from "../invoice.service";
 import {Client} from "../../client/client";
 import {ClientService} from "../../client/client.service";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-index',
@@ -15,26 +15,26 @@ export class IndexComponent implements OnInit {
 
   invoices: Invoice[] = [];
   clients: Client[] = [];
-  filterInvoicesByClientsForm: FormGroup = new FormGroup({
-    clientsControl: new FormControl(null)
+  clientsSelectorFormGroup: FormGroup = new FormGroup({
+    clientSelectedFormControl: new FormControl('')
   });
-  clientsControl: any;
 
   constructor(
     public invoiceService: InvoiceService,
-    public clientService: ClientService) {
+    public clientService: ClientService,
+    private formBuilder: FormBuilder) {
+    this.createForm();
+  }
+
+  private createForm() {
+    this.clientsSelectorFormGroup = this.formBuilder.group({
+      clientSelectedFormControl: [''],
+    });
   }
 
   ngOnInit(): void {
     this.getAllInvoices();
     this.getAllClients();
-    this.initializeClientSelector();
-  }
-
-  private initializeClientSelector() {
-    this.filterInvoicesByClientsForm.setValue(
-      this.clients
-    );
   }
 
   private getAllClients() {
@@ -49,9 +49,15 @@ export class IndexComponent implements OnInit {
     })
   }
 
+  private getInvoicesByClients(clients: Client[]) {
+    this.clientService.getInvoicesByClients(clients).subscribe((data: Client[]) => {
+      console.log(data);
+      this.clients = data;
+    })
+  }
+
   submit() {
-    console.log("Form Submitted");
-    console.log(this.filterInvoicesByClientsForm.value);
+    this.getInvoicesByClients(this.clientsSelectorFormGroup.value.clientSelectedFormControl);
   }
 
 }
